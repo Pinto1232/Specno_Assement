@@ -1,25 +1,26 @@
+import { FaChevronDown } from "react-icons/fa";
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-  User,
+ Navbar,
+ NavbarBrand,
+ NavbarContent,
+ NavbarItem,
+ Link,
+ Button,
+ Dropdown,
+ DropdownTrigger,
+ DropdownMenu,
+ DropdownSection,
+ DropdownItem,
+ User,
 } from "@nextui-org/react";
 
-const TopNavbar = () => {
-  return (
+const TopNavbar: React.FC = () => {
+ return (
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">Specno</p>
       </NavbarBrand>
-      <NavbarContent className=" sm:flex gap-4" justify="center">
+      <NavbarContent className=" sm:flex" justify="center" style={{ gap: '20px' }}>
         <Dropdown
           showArrow
           radius="sm"
@@ -29,8 +30,15 @@ const TopNavbar = () => {
           }}
         >
           <DropdownTrigger>
-            <Link style={{ cursor: 'pointer', color: '#000'}}>
-              Our Services
+            <Link
+              style={{
+                cursor: "pointer",
+                color: "#000",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              Our Services <FaChevronDown style={{ marginLeft: "5px", fontSize: '12px' }} />
             </Link>
           </DropdownTrigger>
           <DropdownMenu
@@ -45,16 +53,16 @@ const TopNavbar = () => {
                 className="h-14 gap-2 opacity-100"
               >
                 <User
-                  name="Junior Garcia"
-                  description="@jrgarciadev"
-                  classNames={{
+                 name="Junior Garcia"
+                 description="@jrgarciadev"
+                 classNames={{
                     name: "text-default-600",
                     description: "text-default-500",
-                  }}
-                  avatarProps={{
+                 }}
+                 avatarProps={{
                     size: "sm",
                     src: "https://avatars.githubusercontent.com/u/30373425?v=4",
-                  }}
+                 }}
                 />
               </DropdownItem>
               <DropdownItem key="dashboard">Dashboard</DropdownItem>
@@ -71,11 +79,11 @@ const TopNavbar = () => {
                 key="theme"
                 className="cursor-default"
                 endContent={
-                  <select id="theme" name="theme">
+                 <select id="theme" name="theme">
                     <option>System</option>
                     <option>Dark</option>
                     <option>Light</option>
-                  </select>
+                 </select>
                 }
               >
                 Theme
@@ -126,7 +134,7 @@ const TopNavbar = () => {
         </NavbarItem>
       </NavbarContent>
     </Navbar>
-  );
+ );
 };
 
 export default TopNavbar;
