@@ -50,21 +50,10 @@ export const menuData: { label: string; items: MenuItem[] }[] = [
   },
   {
     label: "Portfolio",
-    items: [{ key: "portfolio1", label: "Portfolio Item " }],
+    items: [{ key: "portfolio1", label: "Portfolio" }],
   },
   {
     label: "Blog",
-    items: [{ key: "blog1", label: "Blog Post " }],
-  },
-  {
-    label: "Login",
-    items: [{ key: "login", label: "Login" }],
-  },
-  {
-    label: "Help & Feedback",
-    items: [
-      { key: "help_and_feedback", label: "Help & Feedback" },
-      { key: "logout", label: "Log Out" },
-    ],
+    items: [{ key: "blog1", label: "Career" }],
   },
 ];
