@@ -27,7 +27,7 @@ const TopNavbar: React.FC = () => {
   return (
     <Navbar>
       <NavbarBrand>
-        <p className="font-bold text-inherit">Specno</p>
+        <img src="../src/assets/logo.png" alt="logo" className="logo" />
       </NavbarBrand>
       <NavbarContent
         className="sm:flex"

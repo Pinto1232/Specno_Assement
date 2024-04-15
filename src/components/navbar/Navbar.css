@@ -15,7 +15,7 @@
     background-color: #489dda !important;
     color: #fff !important;
     border-radius: '3px';
-    width: 12em;
+    width: 10em;
     margin-left: 10em;
     border-radius: 4px!important;
     font-size: 1.1em !important;
@@ -31,4 +31,8 @@
 
 .txtColor {
     color: #fff !important;
+}
+
+.logo{
+    width: 55%;
 }
