@@ -29,9 +29,9 @@ const TopNavbar = () => {
           }}
         >
           <DropdownTrigger>
-            <Button style={{ backgroundColor: "transparent", border: "none" }}>
+            <Link style={{ cursor: 'pointer', color: '#000'}}>
               Our Services
-            </Button>
+            </Link>
           </DropdownTrigger>
           <DropdownMenu
             aria-label="Custom item styles"
@@ -71,10 +71,7 @@ const TopNavbar = () => {
                 key="theme"
                 className="cursor-default"
                 endContent={
-                  <select
-                    id="theme"
-                    name="theme"
-                  >
+                  <select id="theme" name="theme">
                     <option>System</option>
                     <option>Dark</option>
                     <option>Light</option>
