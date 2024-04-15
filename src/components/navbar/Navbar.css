@@ -1,0 +1,18 @@
+.dropdown-link {
+    cursor: pointer;
+    color: #000!important;
+    display: flex;
+    align-items: center;
+   }
+   
+   .chevron-icon {
+    margin-left: 5px;
+    font-size: 12px;
+   }
+   
+   .discuss-project-button {
+    border-radius: 0!important;
+    background-color: #489dda!important;
+    color: #fff!important;
+   }
+   

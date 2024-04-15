@@ -1,26 +1,39 @@
 import { FaChevronDown } from "react-icons/fa";
 import {
- Navbar,
- NavbarBrand,
- NavbarContent,
- NavbarItem,
- Link,
- Button,
- Dropdown,
- DropdownTrigger,
- DropdownMenu,
- DropdownSection,
- DropdownItem,
- User,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  Link,
+  Button,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
 } from "@nextui-org/react";
+import { menuData } from "../navbar/menuData";
+import "./Navbar.css";
+
+// Helper function to find a section by label
+const findSectionByLabel = (label: string) =>
+  menuData.find((section) => section.label === label);
 
 const TopNavbar: React.FC = () => {
- return (
+  const portfolioSection = findSectionByLabel("Portfolio");
+  const blogSection = findSectionByLabel("Blog");
+  const loginSection = findSectionByLabel("Login");
+
+  return (
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">Specno</p>
       </NavbarBrand>
-      <NavbarContent className=" sm:flex" justify="center" style={{ gap: '20px' }}>
+      <NavbarContent
+        className="sm:flex"
+        justify="center"
+        style={{ gap: "20px" }}
+      >
         <Dropdown
           showArrow
           radius="sm"
@@ -30,15 +43,8 @@ const TopNavbar: React.FC = () => {
           }}
         >
           <DropdownTrigger>
-            <Link
-              style={{
-                cursor: "pointer",
-                color: "#000",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              Our Services <FaChevronDown style={{ marginLeft: "5px", fontSize: '12px' }} />
+            <Link className="dropdown-link">
+              Our Services <FaChevronDown className="chevron-icon" />
             </Link>
           </DropdownTrigger>
           <DropdownMenu
@@ -46,73 +52,52 @@ const TopNavbar: React.FC = () => {
             disabledKeys={["profile"]}
             className="p-3"
           >
-            <DropdownSection aria-label="Profile & Actions" showDivider>
-              <DropdownItem
-                isReadOnly
-                key="profile"
-                className="h-14 gap-2 opacity-100"
+            {menuData.map((section, index) => (
+              <DropdownSection
+                key={index}
+                aria-label={section.label}
+                showDivider
               >
-                <User
-                 name="Junior Garcia"
-                 description="@jrgarciadev"
-                 classNames={{
-                    name: "text-default-600",
-                    description: "text-default-500",
-                 }}
-                 avatarProps={{
-                    size: "sm",
-                    src: "https://avatars.githubusercontent.com/u/30373425?v=4",
-                 }}
-                />
-              </DropdownItem>
-              <DropdownItem key="dashboard">Dashboard</DropdownItem>
-              <DropdownItem key="settings">Settings</DropdownItem>
-              <DropdownItem key="new_project">New Project</DropdownItem>
-            </DropdownSection>
-
-            <DropdownSection aria-label="Preferences" showDivider>
-              <DropdownItem key="quick_search" shortcut="⌘K">
-                Quick search
-              </DropdownItem>
-              <DropdownItem
-                isReadOnly
-                key="theme"
-                className="cursor-default"
-                endContent={
-                 <select id="theme" name="theme">
-                    <option>System</option>
-                    <option>Dark</option>
-                    <option>Light</option>
-                 </select>
-                }
-              >
-                Theme
-              </DropdownItem>
-            </DropdownSection>
-
-            <DropdownSection aria-label="Help & Feedback">
-              <DropdownItem key="help_and_feedback">
-                Help & Feedback
-              </DropdownItem>
-              <DropdownItem key="logout">Log Out</DropdownItem>
-            </DropdownSection>
+                {section.items.map((item) => (
+                  <DropdownItem
+                    key={item.key}
+                    isReadOnly={item.isReadOnly}
+                    className={item.className}
+                    shortcut={"shortcut" in item ? item.shortcut : undefined}
+                    endContent={item.endContent}
+                  >
+                    {item.content || item.label}
+                  </DropdownItem>
+                ))}
+              </DropdownSection>
+            ))}
           </DropdownMenu>
         </Dropdown>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Portfolio
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Careers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Blog
-          </Link>
-        </NavbarItem>
+        {/* Dynamic Navigation Items */}
+        {portfolioSection &&
+          portfolioSection.items.map((item) => (
+            <NavbarItem key={item.key}>
+              <Link color="foreground" href="#">
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
+        {blogSection &&
+          blogSection.items.map((item) => (
+            <NavbarItem key={item.key}>
+              <Link color="foreground" href="#">
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
+        {loginSection &&
+          loginSection.items.map((item) => (
+            <NavbarItem key={item.key}>
+              <Link color="foreground" href="#">
+                {item.label}
+              </Link>
+            </NavbarItem>
+          ))}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
@@ -123,18 +108,14 @@ const TopNavbar: React.FC = () => {
             as={Link}
             href="#"
             variant="solid"
-            style={{
-              borderRadius: 0,
-              backgroundColor: "#489dda",
-              color: "#fff",
-            }}
+            className="discuss-project-button"
           >
             Discuss A Project
           </Button>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
- );
+  );
 };
 
 export default TopNavbar;
