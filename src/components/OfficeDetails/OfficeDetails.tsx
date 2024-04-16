@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-interface Employee {
-  id: string;
-  name: string;
-}
 
 interface Office {
   name: string;
   location: string;
   occupants: number;
-  employees: Employee[];
 }
 
 const OfficeDetails: React.FC = () => {
@@ -59,13 +54,6 @@ const OfficeDetails: React.FC = () => {
           {/* Add more details here */}
         </>
       )}
-
-      <ul>
-        {office &&
-          office.employees.map((employee) => (
-            <li key={employee.id}>{employee.name}</li>
-          ))}
-      </ul>
     </div>
   );
 };
