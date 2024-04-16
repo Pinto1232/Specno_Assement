@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddOfficeForm from "../components/AddOfficeForm/AddOfficeForm";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 interface Office {
   name: string;
@@ -9,7 +10,6 @@ interface Office {
 }
 
 const HomePage = () => {
-  // Initialize state from localStorage if available, otherwise use default list
   const [offices, setOffices] = useState<Office[]>(() => {
     const savedOffices = localStorage.getItem("offices");
     return savedOffices
@@ -24,8 +24,10 @@ const HomePage = () => {
         ];
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
+  const [detailsVisibility, setDetailsVisibility] = useState<{
+    [key: number]: boolean;
+  }>({});
 
-  // Effect to save offices to localStorage when they change
   useEffect(() => {
     localStorage.setItem("offices", JSON.stringify(offices));
   }, [offices]);
@@ -33,6 +35,22 @@ const HomePage = () => {
   const addOffice = (office: Office) => {
     setOffices((prevOffices) => [...prevOffices, office]);
     setShowAddOfficeForm(false);
+  };
+
+  const getBorderColor = (index: number) => {
+    const colors = ["red", "blue", "green", "purple"];
+    return colors[index % colors.length];
+  };
+
+  const toggleDetails = (
+    index: number,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.stopPropagation(); // Prevent the event from propagating to the parent <Link>
+    setDetailsVisibility((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   return (
@@ -59,7 +77,7 @@ const HomePage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          minHeight: "50vh",
+          minHeight: "80vh",
           gap: "20px",
         }}
       >
@@ -116,9 +134,8 @@ const HomePage = () => {
           style={{ width: "100%", padding: "0 20px", boxSizing: "border-box" }}
         >
           {offices.map((office, index) => (
-            <Link
+            <div
               key={index}
-              to={`/office/${index}`}
               style={{
                 background: "#FFFFFF",
                 padding: "20px",
@@ -126,26 +143,77 @@ const HomePage = () => {
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 textDecoration: "none",
                 color: "inherit",
+                borderLeftColor: getBorderColor(index),
+                borderLeftStyle: "solid",
+                borderLeftWidth: "10px",
               }}
             >
-              <h2
+              <Link
+                to={`/office/${index}`}
                 style={{
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                  color: "#333",
-                  borderBottom: "1px solid #E1E1E1",
-                  paddingBottom: "10px",
+                  color: "inherit",
+                  textDecoration: "none",
                 }}
               >
-                {office.name}
-              </h2>
-              <p style={{ color: "#666", fontSize: "14px" }}>
-                Location: {office.location}
-              </p>
-              <p style={{ color: "#666", fontSize: "14px" }}>
-                Occupants: {office.occupants}
-              </p>
-            </Link>
+                <h2
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    color: "#333",
+                    borderBottom: "1px solid #E1E1E1",
+                    paddingBottom: "10px",
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "space-between", 
+                  }}
+                >
+                  {office.name}
+                  <img
+                    src="../src/assets/Edit.png"
+                    alt="Icon"
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </h2>
+              </Link>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <button
+                  onClick={(event) => toggleDetails(index, event)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                  }}
+                >
+                  More info
+                  {detailsVisibility[index] ? (
+                    <FaChevronUp fontSize={12} />
+                  ) : (
+                    <FaChevronDown fontSize={12} />
+                  )}
+                </button>
+              </div>
+              {detailsVisibility[index] && (
+                <>
+                  <p style={{ color: "#666", fontSize: "14px" }}>
+                    Location: {office.location}
+                  </p>
+                  <p style={{ color: "#666", fontSize: "14px" }}>
+                    Occupants: {office.occupants}
+                  </p>
+                </>
+              )}
+            </div>
           ))}
         </div>
       </div>
