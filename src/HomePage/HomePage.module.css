@@ -29,6 +29,7 @@
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
+    margin-top: 50px;
 }
 
 .detailButtonContainer {
@@ -86,8 +87,25 @@
 }
 
 .detailText {
+    display: flex;
+    align-items: center;
     color: #666;
     font-size: 14px;
+    margin-top: 10px;
+}
+
+.locationIcon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.accupants {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 /* Add media queries as needed */

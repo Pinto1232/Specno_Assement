@@ -3,6 +3,8 @@ export interface Office {
   name: string;
   summary: string;
   occupants: Occupant[];
+  email: string;
+  telephone: string;
 }
 
 export interface Occupant {

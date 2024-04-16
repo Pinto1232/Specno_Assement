@@ -9,6 +9,8 @@ interface Office {
   name: string;
   location: string;
   occupants: string;
+  email: string;
+  telephone: string;
 }
 
 const HomePage = () => {
@@ -26,7 +28,14 @@ const HomePage = () => {
   }, [offices]);
 
   const addOffice = (office: Office) => {
-    setOffices((prevOffices) => [...prevOffices, office]);
+    setOffices((prevOffices) => [
+      ...prevOffices,
+      {
+        ...office,
+        email: office.email,
+        telephone: office.telephone,
+      },
+    ]);
     setShowAddOfficeForm(false);
   };
 
@@ -115,9 +124,37 @@ const HomePage = () => {
             </div>
             {detailsVisibility[index] && (
               <>
-                <p className={styles.detailText}>Location: {office.location}</p>
+               <p className={styles.detailText}>
+                  <img
+                    src="../src/assets/Phone.png"
+                    alt="Location Icon"
+                    className={styles.locationIcon}
+                  />
+                  Telefone {office.telephone}
+                </p>
+               <p className={styles.detailText}>
+                  <img
+                    src="../src/assets/email.png"
+                    alt="Location Icon"
+                    className={styles.locationIcon}
+                  />
+                  Email {office.email}
+                </p>
                 <p className={styles.detailText}>
-                  Occupants: {office.occupants}
+                  <img
+                    src="../src/assets/People_2.png"
+                    alt="Location Icon"
+                    className={styles.locationIcon}
+                  />
+                  {office.location}
+                </p>
+                <p className={styles.detailText}>
+                  <img
+                    src="../src/assets/location.png"
+                    alt="Location Icon"
+                    className={styles.accupants}
+                  />
+                  Office Capacity: {office.occupants}
                 </p>
               </>
             )}
