@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddOfficeForm from "../components/AddOfficeForm/AddOfficeForm";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 
 interface Office {
   name: string;
@@ -81,21 +82,6 @@ const HomePage = () => {
           gap: "20px",
         }}
       >
-        <button
-          onClick={() => setShowAddOfficeForm(true)}
-          style={{
-            padding: "12px",
-            background: "linear-gradient(to right, #38a169, #2f855a)",
-            color: "white",
-            borderRadius: "0.375rem",
-            outline: "none",
-            boxShadow:
-              "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-            transition: "background-color 200ms ease-in-out",
-          }}
-        >
-          Add Office
-        </button>
         {showAddOfficeForm && (
           <div
             style={{
@@ -122,9 +108,9 @@ const HomePage = () => {
               <AddOfficeForm onAddOffice={addOffice} />
               <button
                 onClick={() => setShowAddOfficeForm(false)}
-                style={{ position: "absolute", top: 0, right: 0 }}
+                style={{ position: "absolute", top: 10, right: 10 }}
               >
-                Close
+                <IoClose />
               </button>
             </div>
           </div>
@@ -162,9 +148,9 @@ const HomePage = () => {
                     color: "#333",
                     borderBottom: "1px solid #E1E1E1",
                     paddingBottom: "10px",
-                    display: "flex", 
-                    alignItems: "center", 
-                    justifyContent: "space-between", 
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                   }}
                 >
                   {office.name}
@@ -175,6 +161,11 @@ const HomePage = () => {
                       width: "20px",
                       height: "20px",
                       marginLeft: "10px",
+                    }}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      setShowAddOfficeForm(true);
                     }}
                   />
                 </h2>
