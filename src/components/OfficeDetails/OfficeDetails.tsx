@@ -1,70 +1,72 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import styles from "./OfficeDetails.module.css";
+import icons from "../../assets/Mask.png";
+import { MdMoreVert } from "react-icons/md";
 
-
-interface Office {
+interface User {
   name: string;
-  location: string;
-  occupants: number;
+  surname: string;
+  imageIcon: string;
 }
 
 const OfficeDetails: React.FC = () => {
-  const { officeId } = useParams<{ officeId: string }>();
-  const [office, setOffice] = useState<Office | null>(null);
-
-  useEffect(() => {
-    const fetchOfficeDetails = async () => {
-      if (!officeId) {
-        console.error("Office ID is undefined");
-        return;
-      }
-      const fetchedOffice: Office = await fetchOfficeById(officeId);
-      setOffice(fetchedOffice);
-    };
-
-    fetchOfficeDetails();
-  }, [officeId]);
+  const users: User[] = [
+    {
+      name: "Alexander",
+      surname: "Hamilton",
+      imageIcon: icons,
+    },
+    {
+      name: "Elizabeth",
+      surname: "Schuyler",
+      imageIcon: icons,
+    },
+    {
+      name: "Theodore",
+      surname: "Roosevelt",
+      imageIcon: icons,
+    },
+    {
+      name: "Katherine",
+      surname: "Johnson",
+      imageIcon: icons,
+    },
+    {
+      name: "Benjamin",
+      surname: "Franklin",
+      imageIcon: icons,
+    },
+    {
+      name: "Margaret",
+      surname: "Hamilton",
+      imageIcon: icons,
+    },
+  ];
 
   return (
-    <div
-      style={{
-        background: "#FFFFFF",
-        padding: "20px",
-        borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-      }}
-    >
-      {office && (
-        <>
-          <h2
-            style={{
-              color: "#333",
-              borderBottom: "1px solid #E1E1E1",
-              paddingBottom: "10px",
-            }}
-          >
-            {office.name}
-          </h2>
-          <p style={{ color: "#666", fontSize: "14px" }}>
-            Location: {office.location}
-          </p>
-          <p style={{ color: "#666", fontSize: "14px" }}>
-            Occupants: {office.occupants}
-          </p>
-          {/* Add more details here */}
-        </>
-      )}
+    <div className={styles["office-details-container"]}>
+      <h3 className={styles["office-details-title"]}>
+        Staff members in office
+      </h3>
+      <div className={styles["office-details-grid"]}>
+        {users.map((user, index) => (
+          <div key={index} className={styles["office-details-card"]}>
+            <img
+              src={user.imageIcon}
+              alt={`${user.name} ${user.surname}`}
+              className={styles["office-details-image"]}
+            />
+            <p className={styles["office-details-name"]}>
+              {user.name} {user.surname}
+            </p>
+            <p className={styles["office-details-name"]}>
+              <MdMoreVert style={{ cursor: "pointer" }} />
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
-
-async function fetchOfficeById(officeId: string): Promise<Office> {
-  const response = await fetch(`/api/offices/${officeId}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch office details");
-  }
-  const office: Office = await response.json();
-  return office;
-}
 
 export default OfficeDetails;
