@@ -26,14 +26,17 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 p-4 bg-white shadow-md rounded-lg"
+    >
       <input
         name="name"
         value={office.name}
         onChange={handleChange}
         placeholder="Office Name"
         required
-        style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
       <input
         name="location"
@@ -41,7 +44,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="Location"
         required
-        style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
       <input
         name="occupants"
@@ -49,9 +52,34 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="Occupants"
         required
-        style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
-      <button type="submit" style={{ padding: '10px 20px', borderRadius: '5px', background: '#4CAF50', color: 'white', border: 'none', cursor: 'pointer' }}>
+      <button
+        type="submit"
+        style={{
+          padding: "12px",
+          background: "linear-gradient(to right, #38a169, #2f855a)",
+          color: "white",
+          borderRadius: "0.375rem", 
+          outline: "none",
+          transition: "background-color 200ms ease-in-out",
+        }}
+        onMouseOver={(e) => {
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #2f855a, #276749)";
+        }}
+        onMouseOut={(e) => {
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #38a169, #2f855a)";
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.boxShadow = "0 0 0 3px rgba(66, 153, 225, 0.5)";
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.boxShadow =
+            "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
+        }}
+      >
         Add Office
       </button>
     </form>
