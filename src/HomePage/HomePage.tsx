@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AddOfficeForm from "../components/AddOfficeForm/AddOfficeForm";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import styles from "./HomePage.module.css";
 
 interface Office {
   name: string;
@@ -47,178 +48,81 @@ const HomePage = () => {
 
   return (
     <>
-      <style>
-        {`
-          @media (min-width: 768px) {
-            .grid-container {
-              display: grid;
-              grid-template-columns: repeat(3, 1fr);
-              gap: 20px;
-            }
-          }
-          @media (min-width: 1024px) {
-            .grid-container {
-              grid-template-columns: repeat(4, 1fr);
-            }
-          }
-        `}
-      </style>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "80vh",
-          gap: "20px",
-        }}
-      >
-        {showAddOfficeForm && (
+      {showAddOfficeForm && (
+        <div className={styles.modalBackground}>
+          <div className={styles.modalContent}>
+            <AddOfficeForm onAddOffice={addOffice} />
+            <button
+              onClick={() => setShowAddOfficeForm(false)}
+              className={styles.closeButton}
+            >
+              <IoClose />
+            </button>
+          </div>
+        </div>
+      )}
+      <div className={styles.gridContainer}>
+        {offices.map((office, index) => (
           <div
+            key={index}
+            className={styles.officeCard}
             style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "rgba(0,0,0,0.5)",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              zIndex: 1000,
+              borderLeftColor: getBorderColor(index),
+              borderLeftStyle: "solid",
+              borderLeftWidth: "10px",
             }}
           >
-            <div
-              style={{
-                backgroundColor: "white",
-                padding: "20px",
-                borderRadius: "8px",
-                position: "relative",
-              }}
-            >
-              <AddOfficeForm onAddOffice={addOffice} />
+            <Link to={`/office/${index}`} className={styles.officeLink}>
+              <div className={styles.officeHeader}>
+                <div className={styles.blockOffice}>
+                  <span>{office.name}</span>
+                  <img
+                    src="../src/assets/Edit.png"
+                    alt="Edit Icon"
+                    className={styles.editIcon}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      setShowAddOfficeForm(true);
+                    }}
+                  />
+                </div>
+                <div className={styles.officeDetails}>
+                  <img
+                    src="../src/assets/People.png"
+                    alt="New Icon"
+                    className={styles.peopleIcon}
+                  />
+                  <span className={styles.occupants}>{office.occupants}</span>
+                  <span className={styles.staff}>
+                    Staff members in the office
+                  </span>
+                </div>
+              </div>
+            </Link>
+            <div className={styles.detailButtonContainer}>
               <button
-                onClick={() => setShowAddOfficeForm(false)}
-                style={{ position: "absolute", top: 0, right: 10 }}
+                onClick={(event) => toggleDetails(index, event)}
+                className={styles.detailButton}
               >
-                <IoClose />
+                More info
+                {detailsVisibility[index] ? (
+                  <FaChevronUp fontSize={12} />
+                ) : (
+                  <FaChevronDown fontSize={12} />
+                )}
               </button>
             </div>
+            {detailsVisibility[index] && (
+              <>
+                <p className={styles.detailText}>Location: {office.location}</p>
+                <p className={styles.detailText}>
+                  Occupants: {office.occupants}
+                </p>
+              </>
+            )}
           </div>
-        )}
-        <div
-          className="grid-container"
-          style={{ width: "100%", padding: "0 20px", boxSizing: "border-box" }}
-        >
-          {offices.map((office, index) => (
-            <div
-              key={index}
-              style={{
-                background: "#FFFFFF",
-                padding: "20px",
-                borderRadius: "8px",
-                boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-                textDecoration: "none",
-                color: "inherit",
-                borderLeftColor: getBorderColor(index),
-                borderLeftStyle: "solid",
-                borderLeftWidth: "10px",
-              }}
-            >
-              <Link
-                to={`/office/${index}`}
-                style={{
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                <div
-                  style={{
-                    borderBottom: "1px solid #E1E1E1",
-                    paddingBottom: "10px",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      fontSize: "20px",
-                      fontWeight: "bold",
-                      color: "#333",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <span>{office.name}</span>
-                    <img
-                      src="../src/assets/Edit.png"
-                      alt="Edit Icon"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        marginLeft: "10px",
-                      }}
-                      onClick={(event) => {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        setShowAddOfficeForm(true);
-                      }}
-                    />
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <img
-                      src="../src/assets/People.png"
-                      alt="New Icon"
-                      style={{
-                        width: "20px",
-                        height: "20px",
-                        marginRight: "10px",
-                      }}
-                    />
-                    <span style={{ marginRight: "8px", fontWeight: "bold" }}>
-                      {office.occupants}
-                    </span>
-                    Staff members in the office
-                  </div>
-                </div>
-              </Link>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <button
-                  onClick={(event) => toggleDetails(index, event)}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                  }}
-                >
-                  More info
-                  {detailsVisibility[index] ? (
-                    <FaChevronUp fontSize={12} />
-                  ) : (
-                    <FaChevronDown fontSize={12} />
-                  )}
-                </button>
-              </div>
-              {detailsVisibility[index] && (
-                <>
-                  <p style={{ color: "#666", fontSize: "14px" }}>
-                    Location: {office.location}
-                  </p>
-                  <p style={{ color: "#666", fontSize: "14px" }}>
-                    Occupants: {office.occupants}
-                  </p>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
+        ))}
       </div>
     </>
   );

@@ -1,0 +1,106 @@
+/* CSS module for HomePage component */
+.modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.gridContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    gap: 20px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.detailButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.officeCard {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: inherit;
+}
+
+.officeHeader {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E1E1E1;
+    padding-bottom: 10px;
+}
+
+.officeDetails {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.detailButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.staff {
+    font-size: medium;
+    font-weight: 400;
+}
+
+.occupants {
+    font-size: medium;
+    font-weight: 800;
+}
+
+.blockOffice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.detailText {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Add media queries as needed */
+@media (min-width: 768px) {
+    .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .gridContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
