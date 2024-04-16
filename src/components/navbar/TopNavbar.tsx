@@ -14,15 +14,28 @@ import {
 } from "@nextui-org/react";
 import { menuData } from "../navbar/menuData";
 import "./Navbar.css";
+import { useEffect, useState } from "react";
 
-// Helper function to find a section by label
 const findSectionByLabel = (label: string) =>
   menuData.find((section) => section.label === label);
 
+
 const TopNavbar: React.FC = () => {
   const portfolioSection = findSectionByLabel("Portfolio");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const blogSection = findSectionByLabel("Blog");
   const loginSection = findSectionByLabel("Login");
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <Navbar>
@@ -99,21 +112,23 @@ const TopNavbar: React.FC = () => {
             </NavbarItem>
           ))}
       </NavbarContent>
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button
-            as={Link}
-            href="#"
-            variant="solid"
-            className="discuss-project-button"
-          >
-            Discuss A Project
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
+      {windowWidth >= 1024 && (
+        <NavbarContent justify="end">
+          <NavbarItem className="hidden lg:flex">
+            <Link href="#">Login</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Button
+              as={Link}
+              href="#"
+              variant="solid"
+              className="discuss-project-button"
+            >
+              Discuss A Project
+            </Button>
+          </NavbarItem>
+        </NavbarContent>
+      )}
     </Navbar>
   );
 };

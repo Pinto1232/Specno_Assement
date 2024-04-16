@@ -1,38 +1,38 @@
 .dropdown-link {
-    cursor: pointer;
-    color: #0a122e !important;
-    display: flex;
-    align-items: center;
+  cursor: pointer;
+  color: #0a122e !important;
+  display: flex;
+  align-items: center;
 }
 
 .chevron-icon {
-    margin-left: 5px;
-    font-size: 12px;
+  margin-left: 5px;
+  font-size: 12px;
 }
 
 .discuss-project-button {
-    border-radius: 0 !important;
-    background-color: #489dda !important;
-    color: #fff !important;
-    border-radius: '3px';
-    width: 10em;
-    margin-left: 10em;
-    border-radius: 4px!important;
-    font-size: 1.1em !important;
-    padding: 1.4em;
+  border-radius: 0 !important;
+  background-color: #489dda !important;
+  color: #fff !important;
+  border-radius: '3px';
+  width: 10em;
+  margin-left: 10em;
+  border-radius: 4px!important;
+  font-size: 1.1em !important;
+  padding: 1.4em;
 }
 
 .nav-top-bg {
-    background-color: #0a122e;
-    text-align: center;
-    padding: 0.40em;
-    color: #fff;
+  background-color: #0a122e;
+  text-align: center;
+  padding: 0.40em;
+  color: #fff;
 }
 
 .txtColor {
-    color: #fff !important;
+  color: #fff !important;
 }
 
 .logo{
-    width: 55%;
+  width: 55%;
 }
