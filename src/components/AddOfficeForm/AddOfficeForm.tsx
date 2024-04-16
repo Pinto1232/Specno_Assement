@@ -5,6 +5,8 @@ interface AddOfficeFormProps {
     name: string;
     location: string;
     occupants: string;
+    email: string;
+    telephone: string;
   }) => void;
 }
 
@@ -13,6 +15,8 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
     name: "",
     location: "",
     occupants: "",
+    email: "",
+    telephone: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +26,13 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onAddOffice(office);
-    setOffice({ name: "", location: "", occupants: "" });
+    setOffice({
+      name: "",
+      location: "",
+      occupants: "",
+      email: "",
+      telephone: "",
+    });
   };
 
   return (
@@ -54,13 +64,30 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         required
         className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
       />
+      <input
+        name="email"
+        value={office.email}
+        onChange={handleChange}
+        placeholder="email"
+        required
+        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+      />
+
+      <input
+        name="telephone"
+        value={office.telephone}
+        onChange={handleChange}
+        placeholder="telephone"
+        required
+        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+      />
       <button
         type="submit"
         style={{
           padding: "12px",
           background: "linear-gradient(to right, #38a169, #2f855a)",
           color: "white",
-          borderRadius: "0.375rem", 
+          borderRadius: "0.375rem",
           outline: "none",
           transition: "background-color 200ms ease-in-out",
         }}
