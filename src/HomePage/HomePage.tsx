@@ -13,16 +13,7 @@ interface Office {
 const HomePage = () => {
   const [offices, setOffices] = useState<Office[]>(() => {
     const savedOffices = localStorage.getItem("offices");
-    return savedOffices
-      ? JSON.parse(savedOffices)
-      : [
-          {
-            name: "Office 1",
-            location: "San Francisco",
-            occupants: "10 employees",
-          },
-          { name: "Office 2", location: "New York", occupants: "15 employees" },
-        ];
+    return savedOffices ? JSON.parse(savedOffices) : [];
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
   const [detailsVisibility, setDetailsVisibility] = useState<{
@@ -47,7 +38,7 @@ const HomePage = () => {
     index: number,
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    event.stopPropagation(); // Prevent the event from propagating to the parent <Link>
+    event.stopPropagation();
     setDetailsVisibility((prev) => ({
       ...prev,
       [index]: !prev[index],
@@ -108,7 +99,7 @@ const HomePage = () => {
               <AddOfficeForm onAddOffice={addOffice} />
               <button
                 onClick={() => setShowAddOfficeForm(false)}
-                style={{ position: "absolute", top: 10, right: 10 }}
+                style={{ position: "absolute", top: 0, right: 10 }}
               >
                 <IoClose />
               </button>
@@ -141,34 +132,55 @@ const HomePage = () => {
                   textDecoration: "none",
                 }}
               >
-                <h2
+                <div
                   style={{
-                    fontSize: "20px",
-                    fontWeight: "bold",
-                    color: "#333",
                     borderBottom: "1px solid #E1E1E1",
                     paddingBottom: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
                   }}
                 >
-                  {office.name}
-                  <img
-                    src="../src/assets/Edit.png"
-                    alt="Icon"
+                  <div
                     style={{
-                      width: "20px",
-                      height: "20px",
-                      marginLeft: "10px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                      color: "#333",
+                      marginBottom: "10px",
                     }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      setShowAddOfficeForm(true);
-                    }}
-                  />
-                </h2>
+                  >
+                    <span>{office.name}</span>
+                    <img
+                      src="../src/assets/Edit.png"
+                      alt="Edit Icon"
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        marginLeft: "10px",
+                      }}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        setShowAddOfficeForm(true);
+                      }}
+                    />
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <img
+                      src="../src/assets/People.png"
+                      alt="New Icon"
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        marginRight: "10px",
+                      }}
+                    />
+                    <span style={{ marginRight: "8px", fontWeight: "bold" }}>
+                      {office.occupants}
+                    </span>
+                    Staff members in the office
+                  </div>
+                </div>
               </Link>
               <div
                 style={{
