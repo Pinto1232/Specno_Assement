@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./OfficeDetails.module.css";
 import icons from "../../assets/Mask.png";
+import iconsTwo from "../../assets/Mask Group 2.png";
+import iconsThree from "../../assets/Mask Group 3.png";
+import iconsFour from "../../assets/Mask Group 4.png";
+import iconsFive from "../../assets/Mask Group 6.png";
+import iconsSix from "../../assets/Mask Group 7.png";
 import { MdMoreVert } from "react-icons/md";
 
 interface User {
@@ -19,27 +24,27 @@ const OfficeDetails: React.FC = () => {
     {
       name: "Elizabeth",
       surname: "Schuyler",
-      imageIcon: icons,
+      imageIcon: iconsTwo,
     },
     {
       name: "Theodore",
       surname: "Roosevelt",
-      imageIcon: icons,
+      imageIcon: iconsThree,
     },
     {
       name: "Katherine",
       surname: "Johnson",
-      imageIcon: icons,
+      imageIcon: iconsFour,
     },
     {
       name: "Benjamin",
       surname: "Franklin",
-      imageIcon: icons,
+      imageIcon: iconsFive,
     },
     {
       name: "Margaret",
       surname: "Hamilton",
-      imageIcon: icons,
+      imageIcon: iconsSix,
     },
   ];
 
