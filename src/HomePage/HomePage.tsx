@@ -4,6 +4,7 @@ import AddOfficeForm from "../components/AddOfficeForm/AddOfficeForm";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import styles from "./HomePage.module.css";
+import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
 
 interface Office {
   name: string;
@@ -19,6 +20,7 @@ const HomePage = () => {
     return savedOffices ? JSON.parse(savedOffices) : [];
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [detailsVisibility, setDetailsVisibility] = useState<{
     [key: number]: boolean;
   }>({});
@@ -38,6 +40,14 @@ const HomePage = () => {
     ]);
     setShowAddOfficeForm(false);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const getBorderColor = (index: number) => {
     const colors = ["red", "blue", "green", "purple"];
@@ -124,7 +134,7 @@ const HomePage = () => {
             </div>
             {detailsVisibility[index] && (
               <>
-               <p className={styles.detailText}>
+                <p className={styles.detailText}>
                   <img
                     src="../src/assets/Phone.png"
                     alt="Location Icon"
@@ -132,7 +142,7 @@ const HomePage = () => {
                   />
                   Telefone {office.telephone}
                 </p>
-               <p className={styles.detailText}>
+                <p className={styles.detailText}>
                   <img
                     src="../src/assets/email.png"
                     alt="Location Icon"
@@ -158,6 +168,8 @@ const HomePage = () => {
                 </p>
               </>
             )}
+            {/* Displaying the Office staff on mobile */}
+            {isMobile && <OfficeDetails />}
           </div>
         ))}
       </div>
