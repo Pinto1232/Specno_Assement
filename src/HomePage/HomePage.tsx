@@ -91,6 +91,7 @@ const HomePage = () => {
               borderLeftWidth: "10px",
             }}
           >
+            
             <Link to={`/office/${index}`} className={styles.officeLink}>
               <div className={styles.officeHeader}>
                 <div className={styles.blockOffice}>
@@ -169,7 +170,7 @@ const HomePage = () => {
               </>
             )}
             {/* Displaying the Office staff on mobile */}
-            {isMobile && <OfficeDetails />}
+            {isMobile && <OfficeDetails occupants={office.occupants} />}
           </div>
         ))}
       </div>

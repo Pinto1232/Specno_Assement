@@ -4,22 +4,26 @@
     align-items: center;
     padding: 2rem;
     max-width: 100%;
-    margin: auto; 
-    background-color: rgb(234, 234, 234);
+    margin: auto;
+    background-color: rgba(246, 246, 246, 0.618);
 }
 
 .office-details-title {
-    font-size: 1.75rem; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
     font-weight: 700;
-    color: #333; 
-   margin-bottom: 1.5rem; 
+    color: #333;
+    margin-bottom: 1.5rem;
+    margin-left: 0.5em;
 }
 
 .office-details-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     width: 20em;
-    background-color: rgb(255, 255, 255);
+
 }
 
 .office-details-card {
@@ -31,9 +35,9 @@
 }
 
 .office-details-image {
-    width: 52px; 
-    height: 52px; 
-    border-radius: 50%; 
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
 }
 
 .office-details-name {
@@ -63,45 +67,45 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .modalContent {
+}
+
+.modalContent {
     background: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 400px;
-  }
-  
-  .close {
+}
+
+.close {
     float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-  }
-  
-  .close:hover {
+}
+
+.close:hover {
     color: #f00;
-  }
-  
-  form {
+}
+
+form {
     display: flex;
     flex-direction: column;
-  }
-  
-  label {
+}
+
+label {
     margin-bottom: 10px;
-  }
-  
-  input[type="text"] {
+}
+
+input[type="text"] {
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  button {
+}
+
+button {
     padding: 10px;
     margin-top: 10px;
     border: none;
@@ -109,8 +113,8 @@
     cursor: pointer;
     background-color: #007BFF;
     color: white;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #0056b3;
-  }
+}
