@@ -1,31 +1,31 @@
 .office-details-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 100%;
-    margin: auto;
-    background-color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 100%;
+  margin: auto;
+  background-color: #F8FAFC;
 }
 
 .office-details-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 110%;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 1.5rem;
-    margin-left: 0.9em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 110%;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1.5rem;
+  margin-left: 0.9em;
 }
 
 .office-details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    width: 20em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  width: 20em;
 }
 
-.staffMember{
+.staffMember {
   font-size: 24px;
   font-weight: 700;
   line-height: 29.05px;
@@ -37,155 +37,184 @@
 }
 
 .office-details-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    margin-top: 10px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .office-details-image {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
 }
 
 .office-details-name {
-    color: rgba(0, 0, 0, 1);
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    height: 29px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  height: 29px;
 }
 
 
+.iconsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 28px;
+}
+
+.circularImage {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.fileInput {
+  display: none;
+}
 
 @media (max-width: 768px) {
-    .office-details-container {
-        margin-top: 20px;
-    }
+  .office-details-container {
+    margin-top: 20px;
+  }
 }
 
 
 
 /* Multi step modal */
 .buttonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(51, 65, 85, 0.651); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1050; 
-    transition: opacity 0.3s ease-in-out;
-  }
-  .modalHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 65, 85, 0.651);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 
-  .inputFiel{
-    background-color: #FFFFFF;
-    width: 313px;
-    height: 48px;
-    border-radius: 8px;
-    border: 1px!important;
-    padding: 12px, 16px, 12px, 16px;
-    gap: 10px;
-    border-color: #F1F9FF;
-  }
-  
-  .closeButton {
-    background: none;
-    border: none;
-    color: #0D4477;
-    font-size: 24px;
-    cursor: pointer;
-  }
+.inputFiel {
+  background-color: #FFFFFF;
+  width: 313px;
+  height: 48px;
+  border-radius: 8px;
+  border: 1px !important;
+  padding: 12px, 16px, 12px, 16px;
+  gap: 10px;
+  border-color: #F1F9FF;
+}
 
-  .headingText{
-    color: #000000;
-    font-weight: 800;
-    font-size: 24px;
-    line-height: 29.05px;
-    letter-spacing: -2%;
-  }
-  .modalContent {
-    background: #F8FAFC;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 600px; 
-    transition: transform 0.3s ease-out;
-    transform: scale(0.9);
-    animation: scaleUp 0.3s forwards;
-  }
+.closeButton {
+  background: none;
+  border: none;
+  color: #0D4477;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-  
-  
-  @keyframes scaleUp {
-    to {
-      transform: scale(1);
-    }
+.headingText {
+  color: #000000;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 29.05px;
+  letter-spacing: -2%;
+  margin-bottom: 20px;
+}
+
+.modalContent {
+  background: #F8FAFC;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+  transition: transform 0.3s ease-out;
+  transform: scale(0.9);
+  animation: scaleUp 0.3s forwards;
+}
+
+@keyframes scaleUp {
+  to {
+    transform: scale(1);
   }
-  
-  input[type="text"], input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-  }
-  
-  button {
-    background-color: #007BFF; 
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.2s;
-  }
-  
-  button:hover {
-    background-color: #0056b3; /* Darken button on hover for better interaction feedback */
-  }
-  
-  button:focus {
-    outline: none; /* Remove focus outline for cleaner look */
-  }
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
 
 
-  .nextButton {
-    width:232px;
-    height: 48px;
-    background-color: #489DDA;
-    color: #fff; 
-    border-radius: 100px;
-    padding: 16; 
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s; 
-  }
-  
-  .nextButton:hover {
-    background-color: #005f87; /* Slightly darker blue on hover for interaction feedback */
-  }
+.nextButton {
+  width: 232px;
+  height: 48px;
+  background-color: #489DDA;
+  color: #fff;
+  border-radius: 100px;
+  padding: 16;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.nextButton:hover {
+  background-color: #005f87;
+}

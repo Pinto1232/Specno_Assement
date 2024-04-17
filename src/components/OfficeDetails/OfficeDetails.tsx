@@ -8,9 +8,7 @@ import iconsFive from "../../assets/Mask Group 6.png";
 import iconsSix from "../../assets/Mask Group 7.png";
 import styles from "./OfficeDetails.module.css";
 import { IoAddCircle } from "react-icons/io5";
-import  { OfficeDetailsProps, User } from '././OfficeDetails.types'
-
-
+import { OfficeDetailsProps, User } from "././OfficeDetails.types";
 
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
@@ -28,6 +26,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState(1);
   const [editableUser, setEditableUser] = useState<User | null>(null);
+  const [image, setImage] = useState<string | ArrayBuffer | null>(null);
 
   const handleAddOrUpdateUser = () => {
     if (editableUser) {
@@ -43,17 +42,14 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
     setIsModalOpen(false);
   };
 
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setEditableUser({
-          ...editableUser!,
-          imageIcon: e.target!.result as string,
-        });
+      reader.onloadend = () => {
+        setImage(reader.result);
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -135,10 +131,37 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                       </button>
                     </div>
                     <h2 className={styles.headingText}>Avatar</h2>
-                    <input type="file" onChange={handleImageChange} />
+                    <div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className={styles.fileInput}
+                        id="fileInput"
+                      />
+                      <label htmlFor="fileInput">
+                        <div className={styles.iconsContainer}>
+                          {users.map((user, index) => (
+                            <div
+                              key={index}
+                              className={styles.circularImage}
+                              style={{
+                                backgroundImage: `url(${
+                                  image ||
+                                  user.imageIcon ||
+                                  "/path/to/default/image.png"
+                                })`,
+                              }}
+                            >
+                              
+                            </div>
+                          ))}
+                        </div>
+                      </label>
+                    </div>
                     <div className={styles.buttonContainer}>
                       <button
-                      className={styles.nextButton}
+                        className={styles.nextButton}
                         onClick={() => {
                           handleAddOrUpdateUser();
                           setModalStep(3);
@@ -153,7 +176,9 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                 return (
                   <div>
                     <div className={styles.modalHeader}>
-                      <h2 className={styles.headingText}>Edit or Delete User</h2>
+                      <h2 className={styles.headingText}>
+                        Edit or Delete User
+                      </h2>
                       <button
                         className={styles.closeButton}
                         onClick={() => setIsModalOpen(false)}
