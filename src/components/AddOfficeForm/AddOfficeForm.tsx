@@ -1,17 +1,12 @@
 import { useState } from "react";
 
 interface AddOfficeFormProps {
-  onAddOffice: (office: {
-    name: string;
-    location: string;
-    occupants: string;
-    email: string;
-    telephone: string;
-  }) => void;
+  onAddOffice: (office: { id: string; name: string; location: string; occupants: string; email: string; telephone: string; }) => void;
 }
 
 const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   const [office, setOffice] = useState({
+    id: "",
     name: "",
     location: "",
     occupants: "",
@@ -23,10 +18,16 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
     setOffice({ ...office, [e.target.name]: e.target.value });
   };
 
+  const generateUniqueId = () => {
+    return Math.random().toString(36).substr(2, 9);
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    office.id = generateUniqueId(); 
     onAddOffice(office);
     setOffice({
+      id: "", 
       name: "",
       location: "",
       occupants: "",
@@ -107,7 +108,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
             "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
         }}
       >
-        Add Office
+        Add New Office
       </button>
     </form>
   );

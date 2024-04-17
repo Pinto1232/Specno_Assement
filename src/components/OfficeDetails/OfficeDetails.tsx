@@ -18,6 +18,8 @@ interface OfficeDetailsProps {
   occupants: string;
 }
 
+
+
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
   const [users, setUsers] = useState<User[]>([
     { name: "Alexander", surname: "Hamilton", imageIcon: icons },

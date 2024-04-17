@@ -11,8 +11,10 @@ interface Office {
   location: string;
   occupants: string;
   email: string;
-  telephone: string;
+  telephone: string; 
 }
+
+
 
 const HomePage = () => {
   const [offices, setOffices] = useState<Office[]>(() => {
@@ -70,13 +72,13 @@ const HomePage = () => {
       {showAddOfficeForm && (
         <div className={styles.modalBackground}>
           <div className={styles.modalContent}>
-            <AddOfficeForm onAddOffice={addOffice} />
-            <button
+          <button
               onClick={() => setShowAddOfficeForm(false)}
               className={styles.closeButton}
             >
               <IoClose />
             </button>
+            <AddOfficeForm onAddOffice={addOffice} />
           </div>
         </div>
       )}
