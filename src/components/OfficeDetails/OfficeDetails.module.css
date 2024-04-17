@@ -26,8 +26,14 @@
 }
 
 .staffMember{
-    font-weight: 800!important;
-    font-size: 1.4em!important;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29.05px;
+  letter-spacing: -2%;
+  color: rgba(0, 0, 0, 1);
+  height: 29px;
+  text-transform: capitalize;
+  margin-bottom: 10px;
 }
 
 .office-details-card {
@@ -35,6 +41,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -45,8 +52,11 @@
 }
 
 .office-details-name {
-    color: #333;
-    font-weight: 500;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    height: 29px;
 }
 
 
