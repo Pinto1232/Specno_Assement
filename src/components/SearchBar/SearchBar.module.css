@@ -1,0 +1,26 @@
+.searchContainer {
+    position: relative;
+    width: 100%;
+}
+
+.inputSearch{
+    width: 100%;
+    padding: 10px;
+    padding-right: 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(241, 249, 255, 1);
+    color: rgba(30, 41, 59, 1);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.searchIcon{
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 18.5px;
+    color: rgba(34, 40, 47, 1);
+}
+

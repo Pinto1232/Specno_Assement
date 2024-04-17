@@ -8,17 +8,9 @@ import iconsFive from "../../assets/Mask Group 6.png";
 import iconsSix from "../../assets/Mask Group 7.png";
 import styles from "./OfficeDetails.module.css";
 import { IoAddCircle } from "react-icons/io5";
+import  { OfficeDetailsProps, User } from '././OfficeDetails.types'
 
-interface User {
-  name?: string;
-  surname?: string;
-  imageIcon?: string;
-}
 
-interface OfficeDetailsProps {
-  occupants?: string;
-  searchTerm?: string;
-}
 
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
@@ -51,12 +43,6 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
     setIsModalOpen(false);
   };
 
-  /*   const handleDeleteUser = () => {
-    if (currentUser) {
-      setUsers(users.filter(user => user.name !== currentUser.name));
-      setIsModalOpen(false);
-    }
-  };  */
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
