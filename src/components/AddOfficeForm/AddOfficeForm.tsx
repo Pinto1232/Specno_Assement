@@ -42,7 +42,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="Office Name"
         required
-        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className={styles.inputName}
       />
       <input
         name="location"
@@ -50,7 +50,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="Location"
         required
-        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className={styles.inputName}
       />
       <input
         name="occupants"
@@ -58,7 +58,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="Occupants"
         required
-        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className={styles.inputName}
       />
       <input
         name="email"
@@ -66,7 +66,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="email"
         required
-        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className={styles.inputName}
       />
 
       <input
@@ -75,18 +75,11 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         onChange={handleChange}
         placeholder="telephone"
         required
-        className="p-3 rounded border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+        className={styles.inputName}
       />
       <button
         type="submit"
-        style={{
-          padding: "12px",
-          background: "linear-gradient(to right, #38a169, #2f855a)",
-          color: "white",
-          borderRadius: "0.375rem",
-          outline: "none",
-          transition: "background-color 200ms ease-in-out",
-        }}
+        className={styles.btnAddOffice}
         onMouseOver={(e) => {
           e.currentTarget.style.background =
             "linear-gradient(to right, #2f855a, #276749)";
@@ -103,7 +96,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
             "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)";
         }}
       >
-        Add New Office
+        Add Office
       </button>
     </form>
   );
