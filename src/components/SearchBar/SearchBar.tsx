@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa"; // Importing the search icon
+import { FaSearch } from "react-icons/fa";
 
 interface SearchBarProps {
   onSearch: (searchTerm: string) => void;
@@ -18,7 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         style={{
           position: "absolute",
           right: "10px",
-          top: "50%",
+          top: "40%",
           transform: "translateY(-50%)",
         }}
       />

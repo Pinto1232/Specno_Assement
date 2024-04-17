@@ -23,7 +23,7 @@ const HomePage = () => {
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (term: string) => {
     setSearchTerm(term.toLowerCase());
@@ -80,7 +80,7 @@ const HomePage = () => {
   }, [offices]);
 
   return (
-    <>
+    <div className={styles.homeContainer}>
       <div className={styles.buttonCreateOffice}>
         <Button
           className={styles.btnOffice}
@@ -194,14 +194,19 @@ const HomePage = () => {
                 </p>
               </>
             )}
-            <SearchBar onSearch={handleSearch} />
+            <div className={styles.hideOnLarge}>
+              <SearchBar onSearch={handleSearch} />
+            </div>
             {isMobile && office.occupants && (
-              <OfficeDetails occupants={office.occupants ?? "N/A"} searchTerm={searchTerm} />
+              <OfficeDetails
+                occupants={office.occupants ?? "N/A"}
+                searchTerm={searchTerm}
+              />
             )}
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
