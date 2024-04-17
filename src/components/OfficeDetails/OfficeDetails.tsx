@@ -15,7 +15,7 @@ interface User {
 }
 
 interface OfficeDetailsProps {
-  occupants: string;
+  occupants?: string;
 }
 
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
@@ -41,6 +41,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
     }
     setIsModalOpen(false);
   };
+
 
   const handleDeleteUser = () => {
     if (currentUser) {
@@ -97,7 +98,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
 
   return (
     <div className={styles["office-details-container"]}>
-      <h3 className={styles["office-details-title"]}>
+       <h3 className={styles["office-details-title"]}>
         {`Staff members in office ${occupants}`}
       </h3>
       <div className={styles["office-details-grid"]}>
