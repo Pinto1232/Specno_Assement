@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 import styles from "./HomePage.module.css";
 import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
 import { Button } from "@nextui-org/react";
+import SearchBar from "../components/SearchBar/SearchBar";
 
 interface Office {
   name?: string;
@@ -22,6 +23,12 @@ const HomePage = () => {
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term.toLowerCase());
+  };
+
   const [detailsVisibility, setDetailsVisibility] = useState<{
     [key: number]: boolean;
   }>({});
@@ -187,8 +194,9 @@ const HomePage = () => {
                 </p>
               </>
             )}
+            <SearchBar onSearch={handleSearch} />
             {isMobile && office.occupants && (
-              <OfficeDetails occupants={office.occupants ?? "N/A"} />
+              <OfficeDetails occupants={office.occupants ?? "N/A"} searchTerm={searchTerm} />
             )}
           </div>
         ))}

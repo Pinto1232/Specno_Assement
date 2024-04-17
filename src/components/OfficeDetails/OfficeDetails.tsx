@@ -9,16 +9,17 @@ import iconsFive from "../../assets/Mask Group 6.png";
 import iconsSix from "../../assets/Mask Group 7.png";
 
 interface User {
-  name: string;
-  surname: string;
-  imageIcon: string;
+  name?: string;
+  surname?: string;
+  imageIcon?: string;
 }
 
 interface OfficeDetailsProps {
   occupants?: string;
+  searchTerm?: string;
 }
 
-const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
+const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants, searchTerm  }) => {
   const [users, setUsers] = useState<User[]>([
     { name: "Alexander", surname: "Hamilton", imageIcon: icons },
     { name: "Elizabeth", surname: "Schuyler", imageIcon: iconsTwo },
@@ -29,6 +30,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
   ]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
 
   const handleAddOrUpdateUser = (user: User) => {
     const index = users.findIndex((u) => u.name === user.name);
@@ -54,6 +56,11 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
     setCurrentUser(user);
     setIsModalOpen(true);
   };
+
+  const filteredUsers = users.filter(user =>
+    user.name?.toLowerCase().includes(searchTerm || "") ||
+    user.surname?.toLowerCase().includes(searchTerm || "")
+  );
 
   const Modal = () => (
     <div className={styles.modal}>
@@ -98,29 +105,29 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
 
   return (
     <div className={styles["office-details-container"]}>
-       <h3 className={styles["office-details-title"]}>
-        {`Staff members in office ${occupants}`}
-      </h3>
-      <div className={styles["office-details-grid"]}>
-        {users.map((user, index) => (
-          <div key={index} className={styles["office-details-card"]}>
-            <img
-              src={user.imageIcon}
-              alt={`${user.name} ${user.surname}`}
-              className={styles["office-details-image"]}
-            />
-            <p className={styles["office-details-name"]}>
-              {user.name} {user.surname}
-            </p>
-            <p className={styles["office-details-name"]}>
-              <MdMoreVert
-                style={{ cursor: "pointer" }}
-                onClick={() => openModal(user)}
-              />
-            </p>
-          </div>
-        ))}
-      </div>
+      <div>
+      <h3>{`Staff members in office ${occupants}`}</h3>
+    </div>
+    <div className={styles["office-details-grid"]}>
+  {filteredUsers.map((user, index) => (
+    <div key={index} className={styles["office-details-card"]}>
+      <img
+        src={user.imageIcon}
+        alt={`${user.name} ${user.surname}`}
+        className={styles["office-details-image"]}
+      />
+      <p className={styles["office-details-name"]}>
+        {user.name} {user.surname}
+      </p>
+      <p className={styles["office-details-name"]}>
+        <MdMoreVert
+          style={{ cursor: "pointer" }}
+          onClick={() => openModal(user)}
+        />
+      </p>
+    </div>
+  ))}
+</div>
       {isModalOpen && <Modal />}
     </div>
   );
