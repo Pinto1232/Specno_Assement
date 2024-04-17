@@ -23,7 +23,11 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     width: 20em;
+}
 
+.staffMember{
+    font-weight: 800!important;
+    font-size: 1.4em!important;
 }
 
 .office-details-card {
