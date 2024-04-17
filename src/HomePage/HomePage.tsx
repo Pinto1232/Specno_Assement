@@ -8,11 +8,11 @@ import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
 import { Button } from "@nextui-org/react";
 
 interface Office {
-  name: string;
-  location: string;
-  occupants: string;
-  email: string;
-  telephone: string;
+  name?: string;
+  location?: string;
+  occupants?: string;
+  email?: string;
+  telephone?: string;
 }
 
 const HomePage = () => {
@@ -37,7 +37,7 @@ const HomePage = () => {
         ...office,
         email: office.email,
         telephone: office.telephone,
-        occupants: office.occupants, 
+        occupants: office.occupants,
       },
     ]);
     setShowAddOfficeForm(false);
@@ -68,22 +68,24 @@ const HomePage = () => {
     }));
   };
 
-
   useEffect(() => {
     console.log("Offices updated:", offices);
   }, [offices]);
 
   return (
     <>
-      <Button
-        onClick={(event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          setShowAddOfficeForm(true);
-        }}
-      >
-        Create Office
-      </Button>
+      <div className={styles.buttonCreateOffice}>
+        <Button
+          className={styles.btnOffice}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setShowAddOfficeForm(true);
+          }}
+        >
+          Create Office
+        </Button>
+      </div>
       {showAddOfficeForm && (
         <div className={styles.modalBackground}>
           <div className={styles.modalContent}>
@@ -185,7 +187,9 @@ const HomePage = () => {
                 </p>
               </>
             )}
-               {isMobile && office.occupants && <OfficeDetails occupants={office.occupants} />}
+            {isMobile && office.occupants && (
+              <OfficeDetails occupants={office.occupants ?? "N/A"} />
+            )}
           </div>
         ))}
       </div>
