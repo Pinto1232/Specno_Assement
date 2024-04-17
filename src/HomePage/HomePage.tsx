@@ -99,7 +99,7 @@ const HomePage = () => {
           <div className={styles.modalContent}>
             <div className={styles.headingIcons}>
               <div>
-                <IoCloseCircle />
+                <IoCloseCircle onClick={() => setShowAddOfficeForm(false)} />
               </div>
               <div>
                 <h3 className={styles.headinText}>Add Office</h3>
