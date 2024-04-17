@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AddOfficeForm from "../components/AddOfficeForm/AddOfficeForm";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
+import { IoCloseCircle } from "react-icons/io5";
 import styles from "./HomePage.module.css";
 import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
 import { Button } from "@nextui-org/react";
@@ -54,13 +54,13 @@ const HomePage = () => {
 
   const getBorderColor = (index: number) => {
     const colors = [
-        "rgba(255, 155, 113, 1)", 
-        "rgba(255, 0, 110, 1)", 
-        "rgba(251, 86, 7, 1)", 
-        "rgba(169, 240, 209, 1)",
-        "rgba(151, 81, 44, 1)",
-        "rgba(72, 157, 218, 1)",
-        "rgba(131, 56, 236, 1)",
+      "rgba(255, 155, 113, 1)",
+      "rgba(255, 0, 110, 1)",
+      "rgba(251, 86, 7, 1)",
+      "rgba(169, 240, 209, 1)",
+      "rgba(151, 81, 44, 1)",
+      "rgba(72, 157, 218, 1)",
+      "rgba(131, 56, 236, 1)",
     ];
     return colors[index % colors.length];
   };
@@ -97,13 +97,19 @@ const HomePage = () => {
       {showAddOfficeForm && (
         <div className={styles.modalBackground}>
           <div className={styles.modalContent}>
+            <div className={styles.headingIcons}>
+              <div>
+                <IoCloseCircle />
+              </div>
+              <div>
+                <h3 className={styles.headinText}>Add Office</h3>
+              </div>
+            </div>
             <AddOfficeForm onAddOffice={addOffice} />
             <button
               onClick={() => setShowAddOfficeForm(false)}
               className={styles.closeButton}
-            >
-              <IoClose />
-            </button>
+            ></button>
           </div>
         </div>
       )}
@@ -139,7 +145,7 @@ const HomePage = () => {
                     alt="New Icon"
                     className={styles.peopleIcon}
                   />
-                  <span className={styles.occupants}>{office.occupants}</span>  
+                  <span className={styles.occupants}>{office.occupants}</span>
                   <span className={styles.staff}>
                     Staff members in the office
                   </span>
@@ -155,7 +161,7 @@ const HomePage = () => {
                 {detailsVisibility[index] ? (
                   <FaChevronUp fontSize={12} />
                 ) : (
-                  <FaChevronDown className={styles.btnIcons}/>
+                  <FaChevronDown className={styles.btnIcons} />
                 )}
               </button>
             </div>

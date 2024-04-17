@@ -1,8 +1,6 @@
 import { useState } from "react";
-
-interface AddOfficeFormProps {
-  onAddOffice: (office: { id: string; name: string; location: string; occupants: string; email: string; telephone: string; }) => void;
-}
+import styles from "./AddOfficeForm.module.css";
+import { AddOfficeFormProps } from "./Office.types";
 
 const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   const [office, setOffice] = useState({
@@ -24,10 +22,10 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    office.id = generateUniqueId(); 
+    office.id = generateUniqueId();
     onAddOffice(office);
     setOffice({
-      id: "", 
+      id: "",
       name: "",
       location: "",
       occupants: "",
@@ -37,10 +35,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-4 p-4 bg-white shadow-md rounded-lg"
-    >
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
       <input
         name="name"
         value={office.name}
