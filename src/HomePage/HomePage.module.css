@@ -68,6 +68,11 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    background-color: transparent;
+}
+
+.detailButton:hover {
+    background-color: transparent;
 }
 
 .staff {
