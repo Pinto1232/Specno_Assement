@@ -12,3 +12,15 @@ export interface Occupant {
   name: string;
   role: string;
 }
+
+export interface AddOfficeFormProps {
+  onAddOffice: (office: {
+    id: string;
+    name?: string;
+    location?: string;
+    occupants?: string;
+    email?: string;
+    telephone?: string;
+  }) => void;
+}
+
