@@ -195,7 +195,7 @@
 
     .btnOffice {
         border-radius: 4% !important;
-        background-color: #008edb !important;
+        background-color: rgba(72, 157, 218, 1) !important;
         color: #fff !important;
         width: 24%;
     }

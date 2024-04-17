@@ -40,7 +40,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         name="name"
         value={office.name}
         onChange={handleChange}
-        placeholder="Name"
+        placeholder="Office Name"
         required
         className={styles.inputName}
       />
@@ -48,7 +48,16 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         name="location"
         value={office.location}
         onChange={handleChange}
-        placeholder="Location"
+        placeholder="Physical Address"
+        required
+        className={styles.inputName}
+      />
+
+      <input
+        name="email"
+        value={office.email}
+        onChange={handleChange}
+        placeholder="Email Address"
         required
         className={styles.inputName}
       />
@@ -56,15 +65,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         name="occupants"
         value={office.occupants}
         onChange={handleChange}
-        placeholder="Occupants"
-        required
-        className={styles.inputName}
-      />
-      <input
-        name="email"
-        value={office.email}
-        onChange={handleChange}
-        placeholder="Email"
+        placeholder="Maximum Capacity"
         required
         className={styles.inputName}
       />
@@ -73,7 +74,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
         name="telephone"
         value={office.telephone}
         onChange={handleChange}
-        placeholder="Telephone"
+        placeholder="Phone Number"
         required
         className={styles.inputName}
       />
