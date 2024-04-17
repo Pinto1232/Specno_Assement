@@ -18,8 +18,6 @@ interface OfficeDetailsProps {
   occupants: string;
 }
 
-
-
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
   const [users, setUsers] = useState<User[]>([
     { name: "Alexander", surname: "Hamilton", imageIcon: icons },
@@ -30,6 +28,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
     { name: "Margaret", surname: "Hamilton", imageIcon: iconsSix },
   ]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const displayOccupants = occupants || "N/A";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddOrUpdateUser = (user: User) => {
@@ -44,6 +43,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
     setIsModalOpen(false);
   };
 
+
   const handleDeleteUser = () => {
     if (currentUser) {
       setUsers(users.filter((user) => user.name !== currentUser.name));
@@ -55,6 +55,8 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
     setCurrentUser(user);
     setIsModalOpen(true);
   };
+
+  console.log("Rendering OfficeDetails for:", occupants);
 
   const Modal = () => (
     <div className={styles.modal}>
@@ -99,8 +101,8 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({ occupants }) => {
 
   return (
     <div className={styles["office-details-container"]}>
-      <h3 className={styles["office-details-title"]}>
-        {`Staff members in office ${occupants}`}
+       <h3 className={styles["office-details-title"]}>
+        {`Staff members in office ${displayOccupants}`}
       </h3>
       <div className={styles["office-details-grid"]}>
         {users.map((user, index) => (

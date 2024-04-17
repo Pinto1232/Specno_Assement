@@ -5,16 +5,15 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import styles from "./HomePage.module.css";
 import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
+import { Button } from "@nextui-org/react";
 
 interface Office {
   name: string;
   location: string;
   occupants: string;
   email: string;
-  telephone: string; 
+  telephone: string;
 }
-
-
 
 const HomePage = () => {
   const [offices, setOffices] = useState<Office[]>(() => {
@@ -38,6 +37,7 @@ const HomePage = () => {
         ...office,
         email: office.email,
         telephone: office.telephone,
+        occupants: office.occupants, 
       },
     ]);
     setShowAddOfficeForm(false);
@@ -45,6 +45,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleResize = () => {
+      console.log("Window resized to:", window.innerWidth);
       setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener("resize", handleResize);
@@ -67,18 +68,32 @@ const HomePage = () => {
     }));
   };
 
+
+  useEffect(() => {
+    console.log("Offices updated:", offices);
+  }, [offices]);
+
   return (
     <>
+      <Button
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setShowAddOfficeForm(true);
+        }}
+      >
+        Create Office
+      </Button>
       {showAddOfficeForm && (
         <div className={styles.modalBackground}>
           <div className={styles.modalContent}>
-          <button
+            <AddOfficeForm onAddOffice={addOffice} />
+            <button
               onClick={() => setShowAddOfficeForm(false)}
               className={styles.closeButton}
             >
               <IoClose />
             </button>
-            <AddOfficeForm onAddOffice={addOffice} />
           </div>
         </div>
       )}
@@ -93,7 +108,6 @@ const HomePage = () => {
               borderLeftWidth: "10px",
             }}
           >
-            
             <Link to={`/office/${index}`} className={styles.officeLink}>
               <div className={styles.officeHeader}>
                 <div className={styles.blockOffice}>
@@ -171,8 +185,7 @@ const HomePage = () => {
                 </p>
               </>
             )}
-            {/* Displaying the Office staff on mobile */}
-            {isMobile && <OfficeDetails occupants={office.occupants} />}
+               {isMobile && office.occupants && <OfficeDetails occupants={office.occupants} />}
           </div>
         ))}
       </div>
