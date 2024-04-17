@@ -7,14 +7,7 @@ import styles from "./HomePage.module.css";
 import OfficeDetails from "../components/OfficeDetails/OfficeDetails";
 import { Button } from "@nextui-org/react";
 import SearchBar from "../components/SearchBar/SearchBar";
-
-interface Office {
-  name?: string;
-  location?: string;
-  occupants?: string;
-  email?: string;
-  telephone?: string;
-}
+import { Office } from "./HomePage.types";
 
 const HomePage = () => {
   const [offices, setOffices] = useState<Office[]>(() => {
@@ -23,7 +16,7 @@ const HomePage = () => {
   });
   const [showAddOfficeForm, setShowAddOfficeForm] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = (term: string) => {
     setSearchTerm(term.toLowerCase());
@@ -60,7 +53,15 @@ const HomePage = () => {
   }, []);
 
   const getBorderColor = (index: number) => {
-    const colors = ["red", "blue", "green", "purple"];
+    const colors = [
+        "rgba(255, 155, 113, 1)", 
+        "rgba(255, 0, 110, 1)", 
+        "rgba(251, 86, 7, 1)", 
+        "rgba(169, 240, 209, 1)",
+        "rgba(151, 81, 44, 1)",
+        "rgba(72, 157, 218, 1)",
+        "rgba(131, 56, 236, 1)",
+    ];
     return colors[index % colors.length];
   };
 
@@ -80,7 +81,7 @@ const HomePage = () => {
   }, [offices]);
 
   return (
-    <>
+    <div className={styles.homeContainer}>
       <div className={styles.buttonCreateOffice}>
         <Button
           className={styles.btnOffice}
@@ -120,7 +121,7 @@ const HomePage = () => {
             <Link to={`/office/${index}`} className={styles.officeLink}>
               <div className={styles.officeHeader}>
                 <div className={styles.blockOffice}>
-                  <span>{office.name}</span>
+                  <span className={styles.txtOffice}>{office.name}</span>
                   <img
                     src="../src/assets/Edit.png"
                     alt="Edit Icon"
@@ -138,7 +139,7 @@ const HomePage = () => {
                     alt="New Icon"
                     className={styles.peopleIcon}
                   />
-                  <span className={styles.occupants}>{office.occupants}</span>
+                  <span className={styles.occupants}>{office.occupants}</span>  
                   <span className={styles.staff}>
                     Staff members in the office
                   </span>
@@ -154,7 +155,7 @@ const HomePage = () => {
                 {detailsVisibility[index] ? (
                   <FaChevronUp fontSize={12} />
                 ) : (
-                  <FaChevronDown fontSize={12} />
+                  <FaChevronDown className={styles.btnIcons}/>
                 )}
               </button>
             </div>
@@ -194,14 +195,19 @@ const HomePage = () => {
                 </p>
               </>
             )}
-            <SearchBar onSearch={handleSearch} />
+            <div className={styles.hideOnLarge}>
+              <SearchBar onSearch={handleSearch} />
+            </div>
             {isMobile && office.occupants && (
-              <OfficeDetails occupants={office.occupants ?? "N/A"} searchTerm={searchTerm} />
+              <OfficeDetails
+                occupants={office.occupants ?? "N/A"}
+                searchTerm={searchTerm}
+              />
             )}
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
