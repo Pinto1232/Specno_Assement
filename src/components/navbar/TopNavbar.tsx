@@ -40,7 +40,7 @@ const TopNavbar: React.FC = () => {
   return (
     <Navbar>
       <NavbarBrand>
-        <img src="../src/assets/logo.png" alt="logo" className="logo" />
+        <img src="../../../public/assets/logo.png" alt="logo" className="logo" />
       </NavbarBrand>
       <NavbarContent
         className="sm:flex"

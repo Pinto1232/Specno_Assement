@@ -1,11 +1,11 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { MdMoreVert } from "react-icons/md";
-import icons from "../../assets/Mask.png";
-import iconsTwo from "../../assets/MaskGroup2.png";
-import iconsThree from "../../assets/Mask Group 3.png";
-import iconsFour from "../../assets/Mask Group 4.png";
-import iconsFive from "../../assets/Mask Group 6.png";
-import iconsSix from "../../assets/Mask Group 7.png";
+import icons from "../../../public/assets/Mask.png";
+import iconsTwo from "../../../public/assets/MaskGroup2.png";
+import iconsThree from "../../../public/assets/Mask Group 3.png";
+import iconsFour from "../../../public/assets/Mask Group 4.png";
+import iconsFive from "../../../public/assets/Mask Group 6.png";
+import iconsSix from "../../../public/assets/Mask Group 7.png";
 import styles from "./OfficeDetails.module.css";
 import { IoAddCircle, IoArrowBack } from "react-icons/io5";
 import { OfficeDetailsProps, User } from "././OfficeDetails.types";

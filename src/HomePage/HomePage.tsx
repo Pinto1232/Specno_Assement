@@ -129,7 +129,7 @@ const HomePage: React.FC = () => {
                 <div className={styles.blockOffice}>
                   <span className={styles.txtOffice}>{office.name}</span>
                   <img
-                    src="../src/assets/Edit.png"
+                    src="../../../public/assets/Edit.png"
                     alt="Edit Icon"
                     className={styles.editIcon}
                     onClick={(event) => {
@@ -141,7 +141,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className={styles.officeDetails}>
                   <img
-                    src="../src/assets/People.png"
+                    src="../../../public/assets/People.png"
                     alt="New Icon"
                     className={styles.peopleIcon}
                   />
@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
               <>
                 <p className={styles.detailText}>
                   <img
-                    src="../src/assets/Phone.png"
+                    src="../../../public/assets/Phone.png"
                     alt="Location Icon"
                     className={styles.locationIcon}
                   />
@@ -177,7 +177,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <p className={styles.detailText}>
                   <img
-                    src="../src/assets/email.png"
+                    src="../../../public/assets/email.png"
                     alt="Location Icon"
                     className={styles.locationIcon}
                   />
@@ -185,7 +185,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <p className={styles.detailText}>
                   <img
-                    src="../src/assets/People_2.png"
+                    src="../../../public/assets/People_2.png"
                     alt="Location Icon"
                     className={styles.locationIcon}
                   />
@@ -193,7 +193,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <p className={styles.detailText}>
                   <img
-                    src="../src/assets/location.png"
+                    src="../../../public/assets/location.png"
                     alt="Location Icon"
                     className={styles.accupants}
                   />
