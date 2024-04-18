@@ -325,12 +325,68 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                     </div>
                     {renderDots()}
                     <div className={styles.buttonContainer}>
-                      <button className={styles.btnUpdateStaffMember} onClick={handleAddOrUpdateUser}>
+                      <button className={styles.btnUpdateStaffMember} onClick={() => {
+                          setModalStep(7);
+                        }}>
                         Update Staff Member
                       </button>
                     </div>
                   </div>
                 );
+                case 7:
+                  return (
+                    <div>
+                      <div className={styles.modalHeader}>
+                        <div className={styles.EditStaffMember}>
+                          <button
+                            className={styles.closeButton}
+                            onClick={() => setIsModalOpen(false)}
+                          >
+                            <IoArrowBack />
+                          </button>
+                          <h2 className={styles.headingEditStaff}>New Office</h2>
+                        </div>
+                      </div>
+                      {/* New Office form */}
+
+
+
+
+
+                      {/* Office Colour */}
+                      <div>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageChange}
+                          className={styles.fileInput}
+                          id="fileInput"
+                        />
+                        <label htmlFor="fileInput">
+                          <div className={styles.iconsContainer}>
+                            {users.map((user, index) => (
+                              <div
+                                key={index}
+                                className={styles.circularImage}
+                                style={{
+                                  backgroundImage: `url(${
+                                    image ||
+                                    user.imageIcon ||
+                                    "/path/to/default/image.png"
+                                  })`,
+                                }}
+                              ></div>
+                            ))}
+                          </div>
+                        </label>
+                      </div>
+                      <div className={styles.buttonContainer}>
+                        <button className={styles.btnUpdateStaffMember} onClick={handleAddOrUpdateUser}>
+                          Add Office
+                        </button>
+                      </div>
+                    </div>
+                  );
               default:
                 return null;
             }
