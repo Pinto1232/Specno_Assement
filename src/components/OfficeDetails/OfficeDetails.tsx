@@ -7,7 +7,7 @@ import iconsFour from "../../assets/Mask Group 4.png";
 import iconsFive from "../../assets/Mask Group 6.png";
 import iconsSix from "../../assets/Mask Group 7.png";
 import styles from "./OfficeDetails.module.css";
-import { IoAddCircle } from "react-icons/io5";
+import { IoAddCircle, IoArrowBack } from "react-icons/io5";
 import { OfficeDetailsProps, User } from "././OfficeDetails.types";
 import { BiArrowBack } from "react-icons/bi";
 
@@ -103,13 +103,13 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                 return (
                   <div>
                     <div className={styles.modalHeader}>
-                      <h2 className={styles.headingText}>New Staff Member</h2>
-                      <button
+                    <button
                         className={styles.closeButton}
                         onClick={() => setIsModalOpen(false)}
                       >
                         <IoAddCircle />
                       </button>
+                      <h2 className={styles.headingText}>New Staff Member</h2>
                     </div>
                     <input
                       className={styles.inputFiel}
@@ -281,7 +281,15 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                 return (
                   <div>
                     <div className={styles.modalHeader}>
-                      <h2>Edit Staff Member</h2>
+                      <div className={styles.EditStaffMember}>
+                        <button
+                          className={styles.closeButton}
+                          onClick={() => setIsModalOpen(false)}
+                        >
+                          <IoArrowBack />
+                        </button>
+                        <h2 className={styles.headingEditStaff}>Edit Staff Member</h2>
+                      </div>
                       <button
                         className={styles.closeButton}
                         onClick={() => setIsModalOpen(false)}
@@ -315,8 +323,9 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                         </div>
                       </label>
                     </div>
+                    {renderDots()}
                     <div className={styles.buttonContainer}>
-                      <button onClick={handleAddOrUpdateUser}>
+                      <button className={styles.btnUpdateStaffMember} onClick={handleAddOrUpdateUser}>
                         Update Staff Member
                       </button>
                     </div>
