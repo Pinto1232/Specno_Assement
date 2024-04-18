@@ -8,22 +8,25 @@ const OfficeForm: React.FC<OfficeFormProps> = ({
 }) => {
   const [formValues, setFormValues] = useState<OfficeFormValues>(initialValues);
 
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormValues(prevValues => {
-      const newFormValues = { ...prevValues, [name]: value };
-      if (onValuesChange) {
-        onValuesChange(newFormValues);
-      }
-      return newFormValues;
-    });
-  }, [onValuesChange]);  // Removed formValues from dependencies
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFormValues((prevValues) => {
+        const newFormValues = { ...prevValues, [name]: value };
+        if (onValuesChange) {
+          onValuesChange(newFormValues);
+        }
+        return newFormValues;
+      });
+    },
+    [onValuesChange]
+  );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); 
+    e.preventDefault();
     console.log("Form submission successful");
   };
-  
+
   return (
     <form className={styles.formContainer} onSubmit={handleSubmit}>
       {Object.entries(formValues).map(([key, value]) => (

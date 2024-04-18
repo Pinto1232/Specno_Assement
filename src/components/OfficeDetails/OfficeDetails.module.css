@@ -149,6 +149,10 @@
   text-align: center;
 }
 
+.btnUpdateDeleteOffice:hover {
+  background-color: transparent;
+}
+
 .buttonContainerStaff {
   display: flex;
   flex-direction: column;

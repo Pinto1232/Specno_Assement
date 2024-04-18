@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/react";
 import SearchBar from "../components/SearchBar/SearchBar";
 import { Office } from "./HomePage.types";
 
-const HomePage: React.FC = () =>  {
+const HomePage: React.FC = () => {
   const [offices, setOffices] = useState<Office[]>(() => {
     const savedOffices = localStorage.getItem("offices");
     return savedOffices ? JSON.parse(savedOffices) : [];

@@ -40,7 +40,6 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
     "Phone Number": "",
     "Maximum Capacity": "",
   };
-  
 
   const [formValues, setFormValues] = useState<OfficeFormValues>(initialValues);
 
@@ -490,13 +489,12 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                       <button
                         type="button"
                         className={styles.btnUpdateStaffMember}
-                        /* onClick={handleSubmit} */
                       >
                         Update Office
                       </button>
                       <button
                         type="button"
-                         className={styles.btnUpdateDeleteOffice} 
+                        className={styles.btnUpdateDeleteOffice}
                       >
                         Delete Office
                       </button>
