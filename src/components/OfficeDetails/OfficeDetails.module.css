@@ -84,6 +84,19 @@
   background-position: center;
 }
 
+.circularImages {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
 .fileInput {
   display: none;
 }
@@ -229,6 +242,13 @@
   margin-bottom: 10px;
 }
 
+/* Office Form */
+.OfficeHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .DeleteOfficeHeader {
   display: flex;
   justify-content: space-between;
@@ -253,6 +273,10 @@
   color: #0D4477;
   font-size: 24px;
   cursor: pointer;
+}
+
+.closeButton:hover {
+  background-color: transparent;
 }
 
 .closeButtonLeft {
