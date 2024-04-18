@@ -8,5 +8,5 @@ export interface OfficeFormValues {
 
 export interface OfficeFormProps {
   initialValues: OfficeFormValues;
-  onSubmit: (values: OfficeFormValues) => void;
+  onValuesChange: (values: OfficeFormValues) => void;
 }

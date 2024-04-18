@@ -1,29 +1,31 @@
-import React, { useState } from "react";
-import styles from './OfficeForm.module.css';
-import { OfficeFormValues, OfficeFormProps} from './OfficeForm.types'
+import React, { useCallback, useState } from "react";
+import styles from "./OfficeForm.module.css";
+import { OfficeFormValues, OfficeFormProps } from "./OfficeForm.types";
 
-
-const OfficeForm: React.FC<OfficeFormProps> = ({ initialValues, onSubmit }) => {
+const OfficeForm: React.FC<OfficeFormProps> = ({
+  initialValues,
+  onValuesChange,
+}) => {
   const [formValues, setFormValues] = useState<OfficeFormValues>(initialValues);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: name === "capacity" ? parseInt(value) : value,
-    }));
-  };
+    setFormValues(prevValues => {
+      const newFormValues = { ...prevValues, [name]: value };
+      if (onValuesChange) {
+        onValuesChange(newFormValues);
+      }
+      return newFormValues;
+    });
+  }, [onValuesChange]);  // Removed formValues from dependencies
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSubmit(formValues);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); 
+    console.log("Form submission successful");
   };
-
+  
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={styles.formContainer}
-    >
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
       {Object.entries(formValues).map(([key, value]) => (
         <div key={key}>
           <input

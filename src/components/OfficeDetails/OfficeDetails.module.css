@@ -275,6 +275,10 @@
   cursor: pointer;
 }
 
+.closeButton:hover {
+  background-color: transparent;
+}
+
 .closeButtonLeft {
   background: none;
   border: none;
