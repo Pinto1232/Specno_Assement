@@ -26,6 +26,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
     { name: "Benjamin", surname: "Franklin", imageIcon: iconsFive },
     { name: "Margaret", surname: "Hamilton", imageIcon: iconsSix },
   ]);
+  
   const [, setCurrentUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStep, setModalStep] = useState(1);

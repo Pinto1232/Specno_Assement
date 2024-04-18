@@ -1,13 +1,9 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import styles from "./SearchBar.module.css";
-
-interface SearchBarProps {
-  onSearch: (searchTerm: string) => void;
-}
+import { SearchBarProps } from "./SearchBar.types";
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-
   return (
     <div className={styles.searchContainer}>
       <input
@@ -16,9 +12,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         onChange={(e) => onSearch(e.target.value)}
         className={styles.inputSearch}
       />
-      <FaSearch
-       className={styles.searchIcon}
-      />
+      <FaSearch className={styles.searchIcon} />
     </div>
   );
 };
