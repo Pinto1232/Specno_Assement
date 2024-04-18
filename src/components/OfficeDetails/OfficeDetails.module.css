@@ -88,6 +88,22 @@
   display: none;
 }
 
+/* Swipe modal */
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dot {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.activeDot {
+  color: blue; 
+}
+
 @media (max-width: 768px) {
   .office-details-container {
     margin-top: 20px;
@@ -102,6 +118,94 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+.buttonContainerStaff {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12;
+}
+
+.buttonContainerDeleteKeep{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnDeleteRed {
+  width: 232px;
+  background-color: rgba(244, 67, 54, 1);
+  padding: 16px;
+  border-radius: 100px;
+  border: none;
+  gap: 10px;
+  height: 48px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(248, 250, 252, 1);
+  margin-bottom: 18px;
+}
+
+.btnKeepOffice{
+  padding: 16px;
+  border-radius: 100px;
+  border: none;
+  gap: 10px;
+  height: 48px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(72, 157, 218, 1);
+}
+
+.btnKeepOffice:hover {
+  background-color: transparent;
+}
+
+.btnEditStaf{
+  background-color: rgba(72, 157, 218, 1);
+  width: 232px;
+  height: 48px;
+  padding: 16px;
+  border-radius: 100px;
+  gap: 10;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(248, 250, 252, 1);
+  line-height: 16px;
+  align-items: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.btnDeleteStaff{
+  color: rgba(72, 157, 218, 1);
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  align-items: center;
+  height: 16px;
+}
+
+.btnDeleteStaff:hover {
+  background-color: transparent;
 }
 
 .modalOverlay {
@@ -125,6 +229,12 @@
   margin-bottom: 10px;
 }
 
+.DeleteOfficeHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 10;
+}
+
 
 .inputFiel {
   background-color: #FFFFFF;
@@ -145,13 +255,29 @@
   cursor: pointer;
 }
 
-.headingText {
-  color: #000000;
+.closeButtonLeft {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 30px;
   font-weight: 800;
-  font-size: 24px;
-  line-height: 29.05px;
+  cursor: pointer;
+  margin-right: 2px;
+  display: flex;
+}
+
+.headingText {
+  color: rgba(0, 0, 0, 1);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24.2px;
   letter-spacing: -2%;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  width: 377px;
+  height: 62px;
 }
 
 .modalContent {

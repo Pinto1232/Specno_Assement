@@ -9,6 +9,7 @@ import iconsSix from "../../assets/Mask Group 7.png";
 import styles from "./OfficeDetails.module.css";
 import { IoAddCircle } from "react-icons/io5";
 import { OfficeDetailsProps, User } from "././OfficeDetails.types";
+import { BiArrowBack } from "react-icons/bi";
 
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
@@ -66,6 +67,32 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
       user.surname?.toLowerCase().includes(searchTerm || "")
   );
 
+  const handleDotClick = (step: number) => {
+    console.log("Changing to step:", step);
+    setModalStep(step);
+  };
+
+  const renderDots = () => {
+    const totalSteps = 2;
+    const dots = [];
+
+    for (let i = 1; i <= totalSteps; i++) {
+      dots.push(
+        <span
+          key={i}
+          className={`${styles.dot} ${modalStep === i ? styles.activeDot : ""}`}
+          onClick={() => handleDotClick(i)}
+        >
+          •
+        </span>
+      );
+    }
+
+    return <div className={styles.dotsContainer}>{dots}</div>;
+  };
+
+  console.log("Current Modal Step:", modalStep);
+
   const MultiStepModal = () => {
     return (
       <div className={styles.modalOverlay}>
@@ -108,6 +135,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                         })
                       }
                     />
+                    {renderDots()}
                     <div className={styles.buttonContainer}>
                       <button
                         className={styles.nextButton}
@@ -125,7 +153,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                       <h2 className={styles.headingText}>New Staff Member</h2>
                       <button
                         className={styles.closeButton}
-                        onClick={() => setIsModalOpen(false)}
+                        onClick={() => setModalStep(3)}
                       >
                         <IoAddCircle />
                       </button>
@@ -152,18 +180,16 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                                   "/path/to/default/image.png"
                                 })`,
                               }}
-                            >
-                              
-                            </div>
+                            ></div>
                           ))}
                         </div>
                       </label>
                     </div>
+                    {renderDots()}
                     <div className={styles.buttonContainer}>
                       <button
                         className={styles.nextButton}
                         onClick={() => {
-                          handleAddOrUpdateUser();
                           setModalStep(3);
                         }}
                       >
@@ -175,21 +201,19 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
               case 3:
                 return (
                   <div>
-                    <div className={styles.modalHeader}>
-                      <h2 className={styles.headingText}>
-                        Edit or Delete User
-                      </h2>
+                    <div className={styles.modalHeader}></div>
+                    <div className={styles.buttonContainerStaff}>
                       <button
-                        className={styles.closeButton}
-                        onClick={() => setIsModalOpen(false)}
+                        className={styles.btnEditStaf}
+                        onClick={() => setModalStep(1)}
                       >
-                        <IoAddCircle />
+                        Edit Staff Member
                       </button>
-                    </div>
-                    <div className={styles.buttonContainer}>
-                      <button onClick={() => setModalStep(4)}>Edit User</button>
-                      <button onClick={() => setModalStep(5)}>
-                        Delete User
+                      <button
+                        className={styles.btnDeleteStaff}
+                        onClick={() => setModalStep(4)}
+                      >
+                        Delete Staff Member
                       </button>
                     </div>
                   </div>
@@ -197,24 +221,29 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
               case 4:
                 return (
                   <div>
-                    <div className={styles.modalHeader}>
-                      <h2>Confirm Action</h2>
+                    <div className={styles.DeleteOfficeHeader}>
                       <button
-                        className={styles.closeButton}
+                        className={styles.closeButtonLeft}
                         onClick={() => setIsModalOpen(false)}
                       >
-                        <IoAddCircle />
+                        <BiArrowBack />
                       </button>
+                      <h2 className={styles.headingText}>
+                        Are you sure you want to delete Staff Member?
+                      </h2>
                     </div>
-                    <p>
-                      Are you sure you want to delete or keep the existing
-                      office?
-                    </p>
-                    <div className={styles.buttonContainer}>
-                      <button onClick={() => setModalStep(6)}>
+
+                    <div className={styles.buttonContainerDeleteKeep}>
+                      <button
+                        className={styles.btnDeleteRed}
+                        onClick={() => setModalStep(6)}
+                      >
                         Delete Office
                       </button>
-                      <button onClick={() => setIsModalOpen(false)}>
+                      <button
+                        className={styles.btnKeepOffice}
+                        onClick={() => setModalStep(3)}
+                      >
                         Keep Office
                       </button>
                     </div>
@@ -252,7 +281,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                 return (
                   <div>
                     <div className={styles.modalHeader}>
-                      <h2>Update ImageIcon</h2>
+                      <h2>Edit Staff Member</h2>
                       <button
                         className={styles.closeButton}
                         onClick={() => setIsModalOpen(false)}
@@ -260,10 +289,35 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                         <IoAddCircle />
                       </button>
                     </div>
-                    <input type="file" onChange={handleImageChange} />
+                    <div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        className={styles.fileInput}
+                        id="fileInput"
+                      />
+                      <label htmlFor="fileInput">
+                        <div className={styles.iconsContainer}>
+                          {users.map((user, index) => (
+                            <div
+                              key={index}
+                              className={styles.circularImage}
+                              style={{
+                                backgroundImage: `url(${
+                                  image ||
+                                  user.imageIcon ||
+                                  "/path/to/default/image.png"
+                                })`,
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+                      </label>
+                    </div>
                     <div className={styles.buttonContainer}>
                       <button onClick={handleAddOrUpdateUser}>
-                        Update User
+                        Update Staff Member
                       </button>
                     </div>
                   </div>
