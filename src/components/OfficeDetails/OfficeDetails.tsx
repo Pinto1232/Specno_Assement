@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { MdMoreVert } from "react-icons/md";
 import icons from "../../assets/Mask.png";
-import iconsTwo from "../../assets/Mask Group 2.png";
+import iconsTwo from "../../assets/MaskGroup2.png";
 import iconsThree from "../../assets/Mask Group 3.png";
 import iconsFour from "../../assets/Mask Group 4.png";
 import iconsFive from "../../assets/Mask Group 6.png";
@@ -12,7 +12,7 @@ import { OfficeDetailsProps, User } from "././OfficeDetails.types";
 import { BiArrowBack } from "react-icons/bi";
 import OfficeForm from "../Forms/OfficeForm";
 import { OfficeFormValues } from "../Forms/OfficeForm.types";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
