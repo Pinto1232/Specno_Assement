@@ -14,6 +14,7 @@ import OfficeForm from "../Forms/OfficeForm";
 import { OfficeFormValues } from "../Forms/OfficeForm.types";
 import { debounce } from "lodash";
 
+
 const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
   searchTerm,
