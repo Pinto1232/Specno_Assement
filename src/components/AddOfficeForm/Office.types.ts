@@ -9,8 +9,8 @@ export interface Office {
 
 export interface Occupant {
   id: string;
-  name: string;
-  role: string;
+  name?: string;
+  role?: string;
 }
 
 export interface AddOfficeFormProps {

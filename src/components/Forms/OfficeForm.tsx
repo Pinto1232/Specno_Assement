@@ -32,7 +32,7 @@ const OfficeForm: React.FC<OfficeFormProps> = ({ initialValues, onSubmit }) => {
             id={key}
             value={value as string | number}
             onChange={handleChange}
-            placeholder={` ${key}`}
+            placeholder={`Enter ${key}`}
             className={styles.formInput}
           />
         </div>

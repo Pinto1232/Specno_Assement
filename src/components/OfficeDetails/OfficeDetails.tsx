@@ -17,7 +17,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   occupants,
   searchTerm,
 }) => {
-  const [users, setUsers] = useState<User[]>([
+  const [users] = useState<User[]>([
     { name: "Alexander", surname: "Hamilton", imageIcon: icons },
     { name: "Elizabeth", surname: "Schuyler", imageIcon: iconsTwo },
     { name: "Theodore", surname: "Roosevelt", imageIcon: iconsThree },
@@ -30,19 +30,16 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
   const [modalStep, setModalStep] = useState(1);
   const [editableUser, setEditableUser] = useState<User | null>(null);
   const [image, setImage] = useState<string | ArrayBuffer | null>(null);
+  const [offices, setOffices] = useState<OfficeFormValues[]>([]);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  const handleAddOrUpdateUser = () => {
-    if (editableUser) {
-      const index = users.findIndex((u) => u.name === editableUser.name);
-      if (index !== -1) {
-        const updatedUsers = [...users];
-        updatedUsers[index] = editableUser;
-        setUsers(updatedUsers);
-      } else {
-        setUsers([...users, editableUser]);
-      }
-    }
-    setIsModalOpen(false);
+  const handleAddOffice = (newOffice: OfficeFormValues) => {
+    setOffices([...offices, newOffice]);
+    setIsFormOpen(false); // This line closes the form after submission
+  };
+
+  const handleOpenForm = () => {
+    setIsFormOpen(true);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -118,7 +115,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
 
   const handleFormSubmit = (values: OfficeFormValues) => {
     console.log("Submitted Values:", values);
-    // Additional logic here
+    handleAddOffice(values);
   };
 
   const MultiStepModal = () => {
@@ -380,10 +377,12 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                         <h2 className={styles.headingEditStaff}>New Office</h2>
                       </div>
                     </div>
-                    <OfficeForm
-                      initialValues={initialValues}
-                      onSubmit={handleFormSubmit}
-                    />
+                    {isFormOpen && (
+                      <OfficeForm
+                        initialValues={initialValues}
+                        onSubmit={handleFormSubmit}
+                      />
+                    )}
 
                     <div>
                       <input
@@ -411,7 +410,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                     <div className={styles.buttonContainer}>
                       <button
                         className={styles.btnUpdateStaffMember}
-                        onClick={handleAddOrUpdateUser}
+                        onClick={handleOpenForm}
                       >
                         Add Office
                       </button>
