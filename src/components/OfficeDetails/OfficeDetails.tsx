@@ -399,7 +399,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                           {users.map((user, index) => (
                             <div
                               key={user.name}
-                              className={styles.circularImage}
+                              className={styles.circularImages}
                               style={{
                                 backgroundColor: colors[index % colors.length],
                               }}
