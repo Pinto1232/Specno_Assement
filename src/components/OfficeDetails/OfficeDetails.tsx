@@ -40,6 +40,7 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
     "Phone Number": "",
     "Maximum Capacity": "",
   };
+  
 
   const [formValues, setFormValues] = useState<OfficeFormValues>(initialValues);
 
@@ -485,13 +486,19 @@ const OfficeDetails: React.FC<OfficeDetailsProps> = ({
                         </div>
                       </label>
                     </div>
-                    <div className={styles.buttonContainer}>
+                    <div className={styles.buttonContainer8}>
                       <button
                         type="button"
                         className={styles.btnUpdateStaffMember}
                         /* onClick={handleSubmit} */
                       >
                         Update Office
+                      </button>
+                      <button
+                        type="button"
+                         className={styles.btnUpdateDeleteOffice} 
+                      >
+                        Delete Office
                       </button>
                     </div>
                   </div>

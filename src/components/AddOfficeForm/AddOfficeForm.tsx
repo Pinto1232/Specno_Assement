@@ -2,6 +2,8 @@ import { useState } from "react";
 import styles from "./AddOfficeForm.module.css";
 import { AddOfficeFormProps } from "./Office.types";
 
+
+
 const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
   const [office, setOffice] = useState({
     id: "",
@@ -32,6 +34,7 @@ const AddOfficeForm: React.FC<AddOfficeFormProps> = ({ onAddOffice }) => {
       email: "",
       telephone: "",
     });
+    
   };
 
   return (
